@@ -5,3 +5,7 @@ export interface CoinData {
    name: string
    price_usd: string
 }
+
+export interface Flag {
+   [key: string]: string
+}
