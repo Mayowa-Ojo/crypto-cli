@@ -55,35 +55,38 @@ function displayHelpMsg(): string {
    `
 }
 
-(async function() {
-   let data;
-   let formattedData;
-   let flags: Flag = {};
+if(import.meta.main) {
 
-   switch (Object.keys(parsedArgs)[1]) {
-      case "help":
-      case "h":
-         console.log(displayHelpMsg());
-         break;
-      case "coins":
-      case "a":
-         if(Object.keys(parsedArgs).length > 2) {
-            flags["limit"] = parsedArgs.l || parsedArgs.limit
-         }
-         data = await getCoins(flags);
-         formattedData = formatData(data);
-         console.log(formattedData);
-         break;
-      case "coin":
-      case "c":
-         if(Object.keys(parsedArgs).length > 2) {
-            flags["id"] = parsedArgs.i || parsedArgs.id
-         }
-         data = await getCoin(flags);
-         formattedData = formatData(data);
-         console.log(formattedData);
-         break;
-      default:
-         console.log(displayHelpMsg());
-   }
-})();
+   (async function() {
+      let data;
+      let formattedData;
+      let flags: Flag = {};
+
+      switch (Object.keys(parsedArgs)[1]) {
+         case "help":
+         case "h":
+            console.log(displayHelpMsg());
+            break;
+         case "coins":
+         case "a":
+            if(Object.keys(parsedArgs).length > 2) {
+               flags["limit"] = parsedArgs.l || parsedArgs.limit
+            }
+            data = await getCoins(flags);
+            formattedData = formatData(data);
+            console.log(formattedData);
+            break;
+         case "coin":
+         case "c":
+            if(Object.keys(parsedArgs).length > 2) {
+               flags["id"] = parsedArgs.i || parsedArgs.id
+            }
+            data = await getCoin(flags);
+            formattedData = formatData(data);
+            console.log(formattedData);
+            break;
+         default:
+            console.log(displayHelpMsg());
+      }
+   })();
+}
